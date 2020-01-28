@@ -15,23 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', function(){
-   return 'Users';
-});
+Route::get('/users', "UserController@index");
 
-Route::get('users/new', function(){
-   return "crear usuario";
-});
+Route::get('users/new', "UserController@create");
 
-Route::get('/users/{id}', function($id){
-    return "mostrando detalle del usuario: {$id}";
-})->where('id', '[0-9]+');
+Route::get('/users/{id}', "UserController@show")->where('id', '[0-9]+');
 
-Route::get('/users/{id}/{nickname?}', function($id, $nickname = null){
-   if($nickname){
-       return " el usuario {$id} le dicen {$nickname}";
-   }else{
-       return "el usuario {$id}";
-   }
-});
+Route::get('/users/{id}/{nickname?}', "WelcomeUserController");
 
